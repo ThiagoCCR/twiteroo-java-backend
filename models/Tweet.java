@@ -1,5 +1,6 @@
 package com.api.twiteroo.models;
 
+import com.api.twiteroo.DTOs.PostTweetDTO;
 import com.api.twiteroo.DTOs.TweetDTO;
 
 import jakarta.persistence.Column;
@@ -15,9 +16,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Tweet {
 
-    public Tweet(TweetDTO data) {
+    public Tweet(PostTweetDTO data, String avatar) {
         this.username = data.username();
-        this.avatar = data.avatar();
+        this.avatar = avatar;
         this.text = data.text();
     }
 

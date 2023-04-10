@@ -1,5 +1,7 @@
 package com.api.twiteroo.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,22 @@ public class UserService {
 
     public void create(UserDTO data) {
         repository.save(new User(data));
+    }
+
+    public List<User> findAll() {
+        return repository.findAll();
+    }
+
+    public void delete(Long id) {
+        repository.deleteById(id);
+    }
+
+    public void update(Long id, UserDTO body) {
+        repository.findById(id).map(user -> {
+            user.setUsername(body.username());
+            user.setAvatar(body.avatar());
+            return repository.save(user);
+        });
     }
 
 }
